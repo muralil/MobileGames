@@ -10,6 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Unzip project if it was uploaded as a zip
+        run: |
+          for z in *.zip; do
+            [ -f "$z" ] && unzip -o -q "$z" && echo "Unzipped $z"
+          done
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
